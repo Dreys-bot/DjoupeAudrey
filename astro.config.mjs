@@ -1,18 +1,46 @@
 import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
+import react from '@astrojs/react';
+import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
-import tailwind from "@astrojs/tailwind";
+import compress from 'astro-compress';
+import robotsTxt from 'astro-robots-txt';
+import { astroImageTools } from 'astro-imagetools';
 
-import react from "@astrojs/react";
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
 
-
+// https://astro.build/config
 export default defineConfig({
-  site: 'https://github.com/Dreys-bot',
-  integrations: [mdx(), sitemap(), tailwind(), react()],
+  // base: '.', // Set a path prefix.
+  site: 'https://djoupeaudrey.com/', // Use to generate your sitemap and canonical URLs in your final build.
+  trailingSlash: 'always', // Use to always append '/' at end of url
+  integrations: [
+    react(),
+    tailwind({}),
+    sitemap(),
+    robotsTxt(),
+    compress({
+      html: {
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: false,
+        conservativeCollapse: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyURLs: true,
+        sortAttributes: true,
+        sortClassName: true,
+        removeComments: true,
+      },
+    }),
+    astroImageTools,
+  ],
   markdown: {
-    remarkPlugins: ['remark-math'],
-    rehypePlugins: [['rehype-katex', {
-      // Katex plugin options
-    }]]
-  }
+    extendDefaultPlugins: true,
+    shikiConfig: {
+      theme: 'monokai',
+    },
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex, rehypeRaw],
+  },
 });
