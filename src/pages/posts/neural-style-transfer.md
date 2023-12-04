@@ -3,7 +3,7 @@ layout: '@/templates/BasePost.astro'
 title: Neural style transfer
 description: This article explains neural style transfer, an AI technique combining the visual content of one image with the artistic style of another. It details how convolutional neural networks capture content and style, and how iterative optimization blends the two into a new hybrid image. A clear guide to this generative deep learning approach.
 pubDate: 2023-09-03
-imgSrc: '/assets/images/image-post4.jpeg'
+imgSrc: '/assets/images/neural-style-transfer.jpg'
 imgAlt: 'Image post 4'
 ---
 

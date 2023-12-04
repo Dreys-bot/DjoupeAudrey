@@ -3,7 +3,7 @@ layout: '@/templates/BasePost.astro'
 title: Understanding the transformer architecture
 description: This article details the Transformer architecture, revolutionary for natural language processing. It explains the functioning of attention blocks, the heart of the model, which establish connections between the words of a sentence in a parallel and contextual way.
 pubDate: 2023-10-06T00:00:00Z
-imgSrc: '/assets/images/image-post.jpeg'
+imgSrc: '/assets/images/transformer-architecture.jpg'
 imgAlt: 'Image post'
 ---
 
