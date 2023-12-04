@@ -66,7 +66,7 @@ class Embeddings(nn.Module):
 		out = self.lut(x) * math.sqrt(self.d_model) 
 		return out
 ```
-The purpose of using an embedding instead of the original token is to ensure that we have a similar mathematical vector representation for tokens that are semantically similar. For example, let’s consider the words “she” and “her”. These words are semantically similar, in the sense that they both refer to a woman or girl, but the corresponding tokens can be completely different (for example, when using OpenAI’s `tiktoken` tokenizer, “she” corresponds to token 7091, and “her” corresponds to token 372). The embeddings for these two tokens will start out being very different from one another as well, because the weights of the embedding layer are initialized randomly and learned during training. But if the two words frequently appear nearby in the training data, eventually the embedding representations will converge to be similar.
+The purpose of using an embedding instead of the original token is to ensure that we have a similar mathematical vector representation for tokens that are semantically similar. For example, let’s consider the words “she” and “her”. These words are semantically similar, in the sense that they both refer to a woman or girl, but the corresponding tokens can be completely different (for example, when using OpenAI’s **tiktoken** tokenizer, “she” corresponds to token 7091, and “her” corresponds to token 372). The embeddings for these two tokens will start out being very different from one another as well, because the weights of the embedding layer are initialized randomly and learned during training. But if the two words frequently appear nearby in the training data, eventually the embedding representations will converge to be similar.
 
 ## Positional Encoding
 
@@ -96,7 +96,7 @@ class PositionalEncoding(nn.Module):
 
 ## Decoder
 
-As we saw in the diagrammatic overview of the Transformer architecture, the next stage after the Embedding and Positional Encoding layers is the **Decoder module**. The Decoder consists of _N_ copies of a Decoder Layer followed by a Layer Norm. Here’s the `Decoder` class, which takes a single `DecoderLayer` instance as input to the class initializer:
+As we saw in the diagrammatic overview of the Transformer architecture, the next stage after the Embedding and Positional Encoding layers is the **Decoder module**. The Decoder consists of _N_ copies of a Decoder Layer followed by a **Layer Norm**. Here’s the **Decoder** class, which takes a single **DecoderLayer** instance as input to the class initializer:
 
 ```python
 class Decoder(nn.Module): 
@@ -110,7 +110,7 @@ class Decoder(nn.Module):
 		return self.norm(x)
 ```
 
-The Layer Norm takes an input of shape `(batch_size, seq_len, d_model)` and normalizes it over its last dimension. As a result of this step, each embedding distribution will start out as unit normal (centered around zero and with standard deviation of one). Then during training, the distribution will change shape as the parameters `a_2` and `b_2` are optimized for our scenario.
+The Layer Norm takes an input of shape **(batch_size, seq_len, d_model)** and normalizes it over its last dimension. As a result of this step, each embedding distribution will start out as unit normal (centered around zero and with standard deviation of one). Then during training, the distribution will change shape as the parameters **a_2** and **b_2** are optimized for our scenario.
 
 ```python
 class LayerNorm(nn.Module): 
