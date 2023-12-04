@@ -1,3 +1,15 @@
+/**********************************
+*           KATEX
+**********************************/
+
 .katex-html {
-  visibility: hidden;
+  display: none;
+}
+
+.katex-mathml {
+  font-size: 1.5rem;
+}
+
+p:has(.math) {
+  text-align: center;
 }
