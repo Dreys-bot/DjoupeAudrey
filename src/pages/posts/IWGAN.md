@@ -3,7 +3,7 @@ layout: '@/templates/BasePost.astro'
 title: Improved Wasserstein Generative Adversial Model
 description: This article compares two adversarial generative models (standard GANs and WGANs). The goal is to understand how these competing networks can produce synthetic data in an unsupervised manner. We will look at how WGAN improves training stability, a key challenge in the field of generative learning.
 pubDate: 2023-12-04T00:00:00Z
-imgSrc: '/assets/images/image-post3.jpeg'
+imgSrc: '/assets/images/3DIWGAN.jpeg'
 imgAlt: 'Image post 3'
 ---
 

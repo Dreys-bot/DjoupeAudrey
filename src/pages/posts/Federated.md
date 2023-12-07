@@ -1,8 +1,8 @@
 ---
 layout: '@/templates/BasePost.astro'
-title: 3rd Lorem ipsum dolor sit
+title: Federated Learning
 description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi.
-pubDate: 2020-02-03T00:00:00Z
+pubDate: 2022-06-03T00:00:00Z
 imgSrc: '/assets/images/image-post4.jpeg'
 imgAlt: 'Image post 4'
 ---
