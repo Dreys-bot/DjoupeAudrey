@@ -1,4 +1,25 @@
 /**********************************
+*           BLOG
+**********************************/
+.max-w-prose {
+  max-width: 100%;
+}
+
+.prose {
+  max-width: 100%;
+}
+
+.prose img {
+  text-align: center;
+}
+
+.prose h1 {
+  color: #0A96A6;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+/**********************************
 *           KATEX
 **********************************/
 

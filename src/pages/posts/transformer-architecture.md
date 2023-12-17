@@ -3,7 +3,7 @@ layout: '@/templates/BasePost.astro'
 title: Understanding the transformer architecture
 description: This article details the Transformer architecture, revolutionary for natural language processing. It explains the functioning of attention blocks, the heart of the model, which establish connections between the words of a sentence in a parallel and contextual way.
 pubDate: 2023-10-06T00:00:00Z
-imgSrc: '/assets/images/transformer-architecture.jpg'
+imgSrc: '/assets/images/transformer-architecture/index.jpg'
 imgAlt: 'Image post'
 ---
 
@@ -34,7 +34,7 @@ Let's study **GPT transfomer architecture**😊
 
 # Transformer architecture of GPT model
 
-![](/assets/images/transformer_GPT.png)
+![](/assets/images/transformer-architecture/transformer_GPT.png)
 
 In this diagram, the data flows from the bottom to the top, as is traditional in Transformer illustrations. Initially, our input tokens undergo several encoding steps:
 - They are encoded using an Embedding layer. This assigns a unique vector representation to each input token.
@@ -126,7 +126,7 @@ class LayerNorm(nn.Module):
 ```
 The **DecoderLayer** class that we clone has the following architecture:
 
-![decoder layer](/assets/images/decoderLayer.png)
+![decoder layer](/assets/images/transformer-architecture/decoderLayer.png)
 
 Here's the corresponding code: 
 
@@ -184,7 +184,7 @@ The attention step is the most important part of the Transformer, so we’ll dev
 
 The multi-headed attention section in the previous diagram can be expanded into the following architecture:
 
-![multi-headed self-attention](/assets/images/selfAttention.png)
+![multi-headed self-attention](/assets/images/transformer-architecture/selfAttention.png)
 
 Each multi-head attention block is made up of four consecutive levels:
 

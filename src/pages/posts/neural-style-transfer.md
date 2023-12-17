@@ -3,19 +3,19 @@ layout: '@/templates/BasePost.astro'
 title: Neural style transfer
 description: This article explains neural style transfer, an AI technique combining the visual content of one image with the artistic style of another. It details how convolutional neural networks capture content and style, and how iterative optimization blends the two into a new hybrid image. A clear guide to this generative deep learning approach.
 pubDate: 2023-09-03
-imgSrc: '/assets/images/neural-style-transfer.jpg'
-imgAlt: 'Image post 4'
+imgSrc: '/assets/images/neural-style-transfer/index.jpg'
+imgAlt: "Vladimir Putin's photo modified by artificial intelligence with an aquarel style"
 ---
 
 # Introduction
 
-![Style Neural Network results](/assets/images/styleNeuralNetResult.png)
+![Style Neural Network results](/assets/images/neural-style-transfer/styleNeuralNetResult.png)
 
 As we can see, the generated image is having the content of the ***Content image and style image***. This above result cannot be obtained by overlapping the image. So the main questions are:  ***how we make sure that the generated image has the content and style of the image?  how we capture the content and style of respective images?***
 
 # What Convolutional Neural Network Capture?
 
-![CNN Architecture](/assets/images/CNN_architecture.png)
+![CNN Architecture](/assets/images/neural-style-transfer/CNN_architecture.png)
 
 Convolutional neural networks progressively learn to represent image features. At level 1, with 32 filters, the network can capture simple patterns such as straight or horizontal lines. While these elements may not seem relevant to the human eye, they are essential for the network's learning.
 
@@ -34,7 +34,7 @@ Now, this "encoding nature" of CNNs is key for Neural Style Transfer. First, we 
 
 With this intuition in mind, let's define our content loss and style loss for the randomly generated noisy image.
 
-![VGG](/assets/images/VGG.png)
+![VGG](/assets/images/neural-style-transfer/VGG.png)
 
 ## Content Loss
 
@@ -93,7 +93,7 @@ Now,Let’s define the total loss for Neural Style Transfer.
 
 The total loss function is the sum of the cost of the content and the style image.Mathematically,it can be expressed as :
 
-$L_{total}(\vec{p}, \vec{α},\vec{x}) = αL_{content}(\vec{p}, \vec{x}) + βL_{style}(\vec{α}, \vec{x})$
+$L_{total}(\vec{p}, \vec{\alpha},\vec{x}) = \alpha L_{content}(\vec{p}, \vec{x}) + \beta L_{style}(\vec{\alpha}, \vec{x})$
 
 You may have noticed Alpha and beta in the above equation.They are used for weighing Content and Style cost respectively.In general,they define the weightage of each cost in the Generated output image.
 

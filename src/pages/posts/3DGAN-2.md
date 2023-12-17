@@ -1,9 +1,9 @@
 ---
 layout: '@/templates/BasePost.astro'
-title: Improved Wasserstein Generative Adversial Model
+title: 3D Generative Adversial Model Part 2 - Wasserstein GAN Improvement
 description: This article compares two adversarial generative models (standard GANs and WGANs). The goal is to understand how these competing networks can produce synthetic data in an unsupervised manner. We will look at how WGAN improves training stability, a key challenge in the field of generative learning.
-pubDate: 2023-12-04T00:00:00Z
-imgSrc: '/assets/images/3DIWGAN.jpeg'
+pubDate: 2023-12-05T00:00:00Z
+imgSrc: '/assets/images/3DGAN-2/index.jpeg'
 imgAlt: 'Image post 3'
 ---
 
@@ -41,7 +41,7 @@ $D_{KL}(p||q) = \int_x \mathrm{p(x)}log\frac{p(x)}{q(x)}d_{x}$
 D(KL) achieves the minimum zero when ***p(x) == q(x)*** everywhere. It is noticeable according to the formula that KL divergence is asymmetric. In cases where ***p(x)*** is close to zero, but ***q(x)*** is significantly non-zero, the ***q’s*** effect is disregarded. It could cause buggy results when we just want to measure the similarity between two equally important distributions.
 
 (2) [Jensen–Shannon Divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence) is another measure of similarity between two probability distributions, bounded by [0,1]. JS divergence is symmetric and more smooth. 
-![graph KL](/assets/images/graph_KL.png)
+![graph KL](/assets/images/3DGAN-2/graph_KL.png)
 
 $D_{JS}(p||q) = \frac{1}{2}D_{KL}(p||\frac{p + q}{2}) + \frac{1}{2}D_{KL}(q||\frac{p + q}{2})$
 
@@ -82,26 +82,26 @@ JS divergence, on the other hand, would tell you how similar the two distributio
 Now let's look at the Wasserstein distance metric. She would tell you how much **work** is required to turn one distribution into another. In our example, this would mean how much effort you would have to put into transforming the distribution of numbers produced by your generator into the actual distribution of numbers. If the two distributions are very different, that would mean it would take a lot of work to make them similar.
 
 To illustrate this, imagine that the actual distribution of numbers is a bell-shaped curve centered around 100. Your generator, on the other hand, mainly produces numbers between 0 and 10. The Wasserstein distance metric could tell you how many earth would need to be moved to transform the flat line between 0 and 10 into a curve of 100. The higher the Wasserstein distance metric, the more work would be required to perform this transformation. Look at the following figure to visualize what i am saying.
-![wasserstein](/assets/images/Wasserstein.png)
+![wasserstein](/assets/images/3DGAN-2/Wasserstein.png)
 
 # What is WGAN and how is different to GAN model?
 
 Wasserstein Gan(WGAN) is an extension of the regular GAN that seeks an alternate way of training the generator model to better approximate the distribution of data observed in a given training dataset. It minimizes the approximation of the **earth's mover distance (em distance)** rather than the **jensen shannon divergence** as in the original GAN.
 
-![GAN architecture](/assets/images/GANArchi.png) 
+![GAN architecture](/assets/images/3DGAN-2/GANArchi.png) 
 
-![WGAN Architecture](/assets/images/WGANArchi.png)
+![WGAN Architecture](/assets/images/3DGAN-2/WGANArchi.png)
 We can see that in the normal GAN when the discirminator gets its input both from the real data sample and also the fake images , the generator outputs eiter **True or False** that is fake or real. It is a **binary output**. But in WGAN, **the discriminator don't classify  rather for each instance, the discriminator outputs a number**. This number doesn't have to be less than one or greater than zero so we cannot use 0.5 as a threshold to decide whether an instanceis real or not. The WGAN's discriminator training just tries to make the output bigger for real instances and smaller for fake. The WGAN changes the discriminator model with the **critic** that scores the realness or fakeness of a given image.
 
 # How WGAN become IWGAN?
 
 Several study showed that the recent method known as 3DGAN shas the Ability to generate realistic samples of 3D object shapes, categorize 3D shapes, and reconstruct 3D shapes from 2D images. 3DGAN is based on the original generative adversarial network (GAN), an architecture and training approach well known to suffer from instability. While 3DGAN is proficient at producing high-quality objects from single classes, we observed that it is difficult to train on distributions involving multiple distinct object classes in varied poses, because as shown in the following figure, which leads the authors to mainly report the results of independent models, each trained only on a single object category.
 
-![result](/assets/images/examplesResult.png)
+![result](/assets/images/3DGAN-2/examplesResult.png)
 
 Therefore, a new approach was studied using the Wasserstein metric explained above (3D-WGAN) and improving it using **autoencoders** to make our 3D-IWGAN model.
 
-![IWGAN architecture](/assets/images/architecIWGAN.png)
+![IWGAN architecture](/assets/images/3DGAN-2/architecIWGAN.png)
 The VAE contains an encoder that encodes images into latent vectors, and a decoder that generates images from the latent vectors.
 The VAE decoder is shared with the GAN generator, so they generate 3D objects from the same latent vectors.
 The VAE encoder transforms the input images into latent vectors of dimension 400 sampled from Gaussians.
