@@ -8,6 +8,7 @@ export const AppConfig = {
 };
 
 export const SocialMedia = {
-  linkedin: 'https://www.linkedin.com/in/bernadette-audrey-djoupe-pene-467b60224/',
+  linkedin:
+    'https://www.linkedin.com/in/bernadette-audrey-djoupe-pene-467b60224/',
   github: 'https://github.com/Dreys-bot',
 };
