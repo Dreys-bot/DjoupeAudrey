@@ -8,6 +8,9 @@ imgAlt: "Vladimir Putin's photo modified by artificial intelligence with an aqua
 ---
 
 # Introduction
+To generally separate content from style in natural images is still an extremely difficult problem. However, the recent advance of Deep Convolutional Neural Networks has produced powerful computer vision systems that learn to extract high-level semantic information from natural images.
+Transferring the style from one image onto another can be considered a problem of texture transfer. In texture transfer the goal is to synthesise a texture from a source image while constraining the texture synthesis in order to preserve the semantic content of a target image.
+For texture synthesis there exist a large range of powerful non-parametric algorithms that can synthesise photorealistic natural textures by resampling the pixels of a given source texture. Therefore, a fundamental prerequisite is to find image representations that independently model variations in the semantic image content and the style in which is presented.
 
 ![Style Neural Network results](/assets/images/neural-style-transfer/styleNeuralNetResult.png)
 
@@ -28,23 +31,37 @@ Let us explore more deeply this fundamental concept of CNNs. Through their progr
 
 # How Convolutional Neural Networks are used to capture content and style of images?
 
-***VGG19*** is used for Neural Style Transfert. It is a ***convolutional neural network*** that is trained on more than a million images from the ImageNet database. 
+![CNN_VGG](/assets/images/neural-style-transfer/CNN_VGG.png)
 
-Now, this "encoding nature" of CNNs is key for Neural Style Transfer. First, we initialize a noisy image that will be our output image (G). We then calculate how similar this image is to the content and style images at particular layers in the network (the VGG network). Since we want our output image (G) to have the content of the content image (C) and the style of the style image (S), we calculate the loss of the generated image (G) with respect to the respective content (C) and style (S) images.
+The figure showed an image representations in a Convolutional Neural Network (CNN). A given input image is represented as a set of filtered images at each processing stage in the CNN. While the number of different filters increases along the processing hierarchy, the size of the filtered images is reduced by some downsampling mechanism (e.g. max-pooling) leading to a decrease in the total number of units per layer of the network.
 
-With this intuition in mind, let's define our content loss and style loss for the randomly generated noisy image.
+**Content Reconstructions**. We can visualise the information at different processing stages in the CNN by reconstructing the input image from only knowing the network’s responses in a particular layer. We reconstruct the input image from from layers ‘conv1 2’ (a), ‘conv2 2’ (b), ‘conv3 2’ (c), ‘conv4 2’ (d) and ‘conv5 2’ (e) of the original VGG-Network. We find that reconstruction from lower layers is almost perfect (a–c). In higher layers of the network, detailed pixel information is lost while the high-level content of the image is preserved (d,e).
 
-![VGG](/assets/images/neural-style-transfer/VGG.png)
+**Style Reconstructions**. On top of the original CNN activations we use a feature space that captures the texture information of an input image. The style representation computes correlations between the different features in different layers of the CNN. We reconstruct the style of the input image from a style representation built on different subsets of CNN layers ( ‘conv1 1’ (a), ‘conv1 1’ and ‘conv2 1’ (b), ‘conv1 1’, ‘conv2 1’ and ‘conv3 1’ (c), ‘conv1 1’, ‘conv2 1’, ‘conv3 1’ and ‘conv4 1’ (d), ‘conv1 1’, ‘conv2 1’, ‘conv3 1’, ‘conv4 1’ and ‘conv5 1’ (e). This creates images that match the style of a given image on an increasing scale while discarding information of the global arrangement of the scene
 
 ## Content Loss
 
-Calculating content loss means how similar is the randomly generated noisy image(G) to the content image(C).In order to calculate content loss :
+Generally each layer in the network defines a non-linear filter bank whose complexity increases with the position of the layer in the network. Hence a given input image $\vec{x}$ is encoded in each layer of the Convolutional Neural Network by the filter responses to that image. A layer with $N_l$ distinct filters has $N_l$ feature maps each of size Ml , where $M_l$ is the height times the width of the feature map. So the responses in a layer $l$ can be stored in a matrix $F_l$ where $F^l_{ij}$ is the activation of the $i^{th}$ filter at position $j$ in layer $l$.
 
-Assume that we choose a hidden layer (L) in a pre-trained network(VGG network) to compute the loss.Therefore, let P and F be the original image and the image that is generated, and, F[l] and P[l] be feature representation of the respective images in layer L. Now, the content loss is :
+To visualise the image information that is encoded at different layers of the hierarchy one can perform gradient descent on a white noise image to find another image that matches the feature responses of the original image.
+Let  $\vec{p}$ and  $\vec{x}$ be the original image and the image that is generated, and $P_l$ and $F_l$ their respective feature representation in layer $l$. We then define the squared-error loss between the two feature representations.
+
 
 $L_{content}(\vec{p},\vec{x},l) = \frac{1}{2}\sum_{i,j}(F_{ij}^{l} - P_{ij}^{l})^2$
 
+The derivative of this loss with respect to the activations in layer $l$ equals
+
+$\frac{\partial \mathcal{L}_{\text {content }}}{\partial F_{i j}^l}= \begin{cases}\left(F^l-P^l\right)_{i j} & \text { if } F_{i j}^l>0 \\ 0 & \text { if } F_{i j}^l<0,\end{cases}$
+
+from which the gradient with respect to the image  $\vec{x}$ can be computed using standard error back-propagation  
+
+Thus we can change the initially random image  $\vec{x}$ until it generates the same response in a certain layer of the Convolutional Neural Network as the original image  $\vec{p}$. When Convolutional Neural Networks are trained on object recognition, they develop a representation of the image that makes object information increasingly explicit along the processing hierarchy. Therefore, along the processing hierarchy of the network, the input image is transformed into representations that are increasingly sensitive to the actual content of the image, but become relatively invariant to its precise appearance. Thus, higher layers in the network capture the high-level content in terms of objects and their arrangement in the input image but do not constrain the exact pixel values of the reconstruction very much. In contrast, reconstructions from the lower layers simply reproduce the exact pixel values of the original image. We therefore refer to the feature responses in higher layers of the network as the ***content representation***
+
 ## Style Loss
+
+To obtain a representation of the style of an input image, we use a feature space designed to capture texture information . This feature space can be built on top of the filter responses in any layer of the network. It consists of the correlations between the different filter responses, where the expectation is taken over the spatial extent of the feature maps. These feature correlations are given by the Gram matrix.
+
+By including the feature correlations of multiple layers, we obtain a stationary, multi-scale representation of the input image, which captures its texture information but not the global arrangement. Again, we can visualise the information captured by these style feature spaces built on different layers of the network by constructing an image that matches the style representation of a given input image (Fig 1, style reconstructions). This is done by using gradient descent from a white noise image to minimise the mean-squared distance between the entries of the Gram matrices from the original image and the Gram matrices of the image to be generated. 
 
 Before calculating style loss, let’s see what is the meaning of “**style of a image**” or how we capture style of an image.
 
@@ -54,7 +71,7 @@ Before calculating style loss, let’s see what is the meaning of “**style of 
 
 
 
-This image shows different channels or feature maps or filters at a particular chosen layer **l**. Now, in order to capture the style of an image we would calculate how **correlated** these filters are to each other meaning how similar are these feature maps. **But what is meant by correlation ?**
+This image shows different channels or feature maps or filters at a particular chosen layer **l**. Now, in order to capture the style of an image we would calculate how **correlated** these filters are to each other meaning how similar are these feature maps. **But what is meant by correlation?**
 
 Let’s understand it with the help of an example:
 
