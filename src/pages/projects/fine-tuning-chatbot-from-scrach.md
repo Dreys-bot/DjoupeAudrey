@@ -1,11 +1,13 @@
 ---
 layout: '@/templates/BasePost.astro'
-title: Fine tuning chatbot from scratch
-description: This article presents an introduction to generative adversarial networks (GANs), a cutting-edge deep learning technique. GANs utilize an adversarial game between two neural networks to generate synthetic data.
-pubDate: 2023-09-30T00:00:00Z
+title: Chatbot fine tuning from scratch
+description: Development of a conversational chatbot based on an open-source Large Language Model (LLM) to automatically generate articles on various topics. Analysis of the current capabilities and limitations of LLM models for the production of autonomously written content.
+pubDate: 2023-09-30
+iconSrc: '/assets/icons/chatbot-icon.png'
+iconAlt: 'Chatbot icon'
 imgSrc: '/assets/images/paint-icon.png'
 imgAlt: 'Paint icon'
-tags: ['python']
+tags: [Tensorflow, Torch, Flask, Transformers, NLp, Colorama]
 ---
 
 We will see how to generate text with models based on the Transformers architecture, and we will use this knowledge to demonstrate how to create fake news. The objective is to demonstrate the operation and use of these models through this practical example.
