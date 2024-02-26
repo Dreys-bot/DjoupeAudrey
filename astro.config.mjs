@@ -12,8 +12,8 @@ import rehypeRaw from 'rehype-raw';
 
 // https://astro.build/config
 export default defineConfig({
-  // base: '.', // Set a path prefix.
-  site: 'https://djoupeaudrey.com/', // Use to generate your sitemap and canonical URLs in your final build.
+  // base: '/djoupeaudrey',
+  site: 'https://djoupeaudrey.github.io/',
   trailingSlash: 'always', // Use to always append '/' at end of url
   integrations: [
     react(),

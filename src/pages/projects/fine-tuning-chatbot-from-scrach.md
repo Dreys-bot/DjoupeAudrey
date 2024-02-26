@@ -1,3 +1,13 @@
+---
+layout: '@/templates/BasePost.astro'
+title: Fine tuning chatbot from scratch
+description: This article presents an introduction to generative adversarial networks (GANs), a cutting-edge deep learning technique. GANs utilize an adversarial game between two neural networks to generate synthetic data.
+pubDate: 2023-12-04T00:00:00Z
+imgSrc: '/assets/images/paint-icon.png'
+imgAlt: 'Paint icon'
+tags: ['python']
+---
+
 We will see how to generate text with models based on the Transformers architecture, and we will use this knowledge to demonstrate how to create fake news. The objective is to demonstrate the operation and use of these models through this practical example.
 
 First, we will present a theoretical introduction to text generation models, followed by a presentation to HuggingFace Transformers, the Python library that we will use in the rest of the post. Then, we will focus on the GPT-2 model, and how to use the interface available in HuggingFace Transformers, both to generate text with the pre-trained models, as well as to re-train them with their own text. Finally, we will see the ethical risks associated with the use of these models without caution,since they have been trained with text from the internet and have learned the same biases present on the web.

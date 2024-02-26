@@ -30,20 +30,17 @@ const Hero = () => (
           from my projects applying AI techniques.
         </>
       }
-      avatar={
-        <img className="h-80 w-64" src="" alt="Avatar image" loading="lazy" />
-      }
+      // avatar={
+      //   <img className="h-80 w-64" src="" alt="Avatar image" loading="lazy" />
+      // }
       socialButtons={
         <>
           <a href={SocialMedia.github}>
-            <HeroSocial
-              src="/assets/images/github-icon.png"
-              alt="Github icon"
-            />
+            <HeroSocial src="/assets/icons/github-icon.png" alt="Github icon" />
           </a>
           <a href={SocialMedia.linkedin}>
             <HeroSocial
-              src="/assets/images/linkedin-icon.png"
+              src="/assets/icons/linkedin-icon.png"
               alt="Linkedin icon"
             />
           </a>
