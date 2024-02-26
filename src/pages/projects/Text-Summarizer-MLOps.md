@@ -1,9 +1,11 @@
 ---
 layout: '@/templates/BasePost.astro'
 title: Text summarizer MLOps
-description: This article presents an introduction to generative adversarial networks (GANs), a cutting-edge deep learning technique. GANs utilize an adversarial game between two neural networks to generate synthetic data.
-pubDate: 2023-12-04T00:00:00Z
+description: Generates a text summary using a Huggingface model trained on a set of texts. Deploy the summary generation process on a platform using AWS tools
+pubDate: 2024-02-26
+iconSrc: '/assets/icons/text-summarizer-icon.png'
+iconAlt: 'Text summarizer icon'
 imgSrc: '/assets/images/paint-icon.png'
 imgAlt: 'Paint icon'
-tags: ['python']
+tags: [Transformers, Tensorflow, Torch, Matplotlib, Fastapi]
 ---

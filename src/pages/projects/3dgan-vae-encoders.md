@@ -3,7 +3,7 @@ layout: '@/templates/BasePost.astro'
 title: 3D Generative Adversial Model with VAE encoders
 description: The project aims to implement and compare GAN, VAE-GAN and MV-VAE-GAN models for 3D shape generation. These models are trained to generate new shapes from latent spaces.
 githubPage: https://github.com/Dreys-bot/3DVAEGAN/tree/main
-pubDate: 2023-12-04T00:00:00Z
+pubDate: 2023-12-05
 iconSrc: '/assets/icons/3dgan-icon.png'
 iconAlt: '3D GAN icon'
 imgSrc: '/assets/images/paint-icon.png'
