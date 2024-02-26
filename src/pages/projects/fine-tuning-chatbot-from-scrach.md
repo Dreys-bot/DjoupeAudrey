@@ -2,6 +2,7 @@
 layout: '@/templates/BasePost.astro'
 title: Chatbot fine tuning from scratch
 description: Development of a conversational chatbot based on an open-source Large Language Model (LLM) to automatically generate articles on various topics. Analysis of the current capabilities and limitations of LLM models for the production of autonomously written content.
+githubPage: https://github.com/Dreys-bot/Articles-generation/tree/main
 pubDate: 2023-09-30
 iconSrc: '/assets/icons/chatbot-icon.png'
 iconAlt: 'Chatbot icon'
