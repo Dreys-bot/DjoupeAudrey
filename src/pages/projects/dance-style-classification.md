@@ -2,8 +2,8 @@
 layout: '@/templates/BasePost.astro'
 title: Dance style classification
 description: Creation of a dance style classifier (afrobeat, hip-hop, classic.) from collected and processed videos, using convolutional neural networks on GPUs. Automatic extraction of key kinematic features and pose estimates via Mediapipe and AlphaPose. Deployment on a Web application for real-time classification.
-githubPage: https://github.com/Dreys-bot/Dance-Steps-Classifier/tree/main
-pubDate: 2023-12-04T00:00:00Z
+githubPage: https://github.com/Dreys-bot/choreAI
+pubDate: 2024-02-20T00:00:00Z
 iconSrc: '/assets/icons/dance-icon.png'
 iconAlt: 'Dance icon'
 imgSrc: '/assets/images/paint-icon.png'
