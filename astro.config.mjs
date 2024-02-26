@@ -12,8 +12,8 @@ import rehypeRaw from 'rehype-raw';
 
 // https://astro.build/config
 export default defineConfig({
-  // base: '/djoupeaudrey',
-  site: 'https://djoupeaudrey.github.io/',
+  // base: '/',
+  site: 'https://dreys-bot.github.io/',
   trailingSlash: 'always', // Use to always append '/' at end of url
   integrations: [
     react(),
